@@ -13,6 +13,7 @@ namespace YouTube.AspNetCore.API.Tutorial.Basic.Filters
                 var errors = context.ModelState.Values
                     .SelectMany(x => x.Errors)
                     .Select(x => x.ErrorMessage)
+                    .Distinct() // 👈 elimina mensajes duplicados
                     .ToList();
 
                 if (errors.Any(x => x.Contains("request")))
